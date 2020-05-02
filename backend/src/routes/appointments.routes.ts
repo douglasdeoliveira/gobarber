@@ -1,39 +1,38 @@
-import { startOfHour, parseISO } from 'date-fns';
+import { parseISO } from 'date-fns';
 import { Router } from 'express';
 
 import AppointmentsRepository from '../repositories/AppointmentsRepository';
+import CreateAppointmentService from '../services/CreateAppointmentService';
 
 const routes = Router();
 
 const appointmentsRepository = new AppointmentsRepository();
 
-routes.get('/', (req, res) => {
+routes.get('/', (request, response) => {
   const appoitments = appointmentsRepository.all();
 
-  res.json(appoitments);
+  response.json(appoitments);
 });
 
-routes.post('/', (req, res) => {
-  const { provider, date } = req.body;
+routes.post('/', (request, response) => {
+  try {
+    const { provider, date } = request.body;
 
-  const parsedDate = startOfHour(parseISO(date));
+    const parsedDate = parseISO(date);
 
-  const findAppointmentInSameDate = appointmentsRepository.findByDate(
-    parsedDate,
-  );
+    const createAppointment = new CreateAppointmentService(
+      appointmentsRepository,
+    );
 
-  if (findAppointmentInSameDate) {
-    return res
-      .status(400)
-      .json({ message: 'This appointment is already booked' });
+    const appointment = createAppointment.execute({
+      provider,
+      date: parsedDate,
+    });
+
+    return response.json(appointment);
+  } catch (error) {
+    return response.status(400).json({ message: error.message });
   }
-
-  const appointment = appointmentsRepository.create({
-    provider,
-    date: parsedDate,
-  });
-
-  return res.json(appointment);
 });
 
 export default routes;
