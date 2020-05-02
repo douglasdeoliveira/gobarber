@@ -13,8 +13,8 @@ lerna-debug.log*
 
 # Directory
 dist
-tmp/uploads/*
-!tmp/uploads/.gitkeep
+tmp/*
+!tmp/.gitkeep
 
 # Diagnostic reports (https://nodejs.org/api/report.html)
 report.[0-9]*.[0-9]*.[0-9]*.[0-9]*.json
