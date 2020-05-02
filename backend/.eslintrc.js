@@ -21,6 +21,7 @@ module.exports = {
   plugins: ['@typescript-eslint', 'prettier', 'import-helpers'],
   rules: {
     'prettier/prettier': 'error',
+    'class-methods-use-this': 'off',
     'import/extensions': ['error', 'ignorePackages', { ts: 'never' }],
     'import-helpers/order-imports': [
       'warn',
