@@ -7,6 +7,12 @@ const routes = Router();
 
 const appointmentsRepository = new AppointmentsRepository();
 
+routes.get('/', (req, res) => {
+  const appoitments = appointmentsRepository.all();
+
+  res.json(appoitments);
+});
+
 routes.post('/', (req, res) => {
   const { provider, date } = req.body;
 
