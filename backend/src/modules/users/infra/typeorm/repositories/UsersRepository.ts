@@ -32,13 +32,10 @@ class UsersRepository implements IUsersRepository {
 
     if (except_user_id) {
       users = await this.ormRepository.find({
-        select: ['id', 'name', 'email', 'avatar', 'created_at', 'updated_at'],
         where: { id: Not(except_user_id) },
       });
     } else {
-      users = await this.ormRepository.find({
-        select: ['id', 'name', 'email', 'avatar', 'created_at', 'updated_at'],
-      });
+      users = await this.ormRepository.find();
     }
 
     return users;
