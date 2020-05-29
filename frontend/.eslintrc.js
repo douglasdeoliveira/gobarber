@@ -39,6 +39,7 @@ module.exports = {
     'import/prefer-default-export': 'off',
     'react/jsx-one-expression-per-line': 'off',
     'no-unused-expressions': 'off',
+    '@typescript-eslint/camelcase': 'off',
     '@typescript-eslint/explicit-function-return-type': [
       'error',
       {
