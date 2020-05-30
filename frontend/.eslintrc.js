@@ -37,6 +37,7 @@ module.exports = {
     'react/prop-types': 'off',
     'react/jsx-props-no-spreading': 'off',
     'import/prefer-default-export': 'off',
+    'import/no-duplicates': 'off',
     'react/jsx-one-expression-per-line': 'off',
     'no-unused-expressions': 'off',
     '@typescript-eslint/camelcase': 'off',

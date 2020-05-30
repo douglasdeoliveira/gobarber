@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { memo } from 'react';
 import { FiPower } from 'react-icons/fi';
 
 import logo from '../../assets/logo.svg';
@@ -16,7 +16,7 @@ const Header: React.FC = () => {
         <Profile>
           <img src={user.avatar_url} alt={user.name} />
           <div>
-            <span>Bem vindo</span>
+            <span>Bem vindo,</span>
             <strong>{user.name}</strong>
           </div>
         </Profile>
@@ -29,4 +29,4 @@ const Header: React.FC = () => {
   );
 };
 
-export default Header;
+export default memo(Header);
